@@ -34,7 +34,7 @@ public class MovieController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Movie> findById(@PathVariable String id) {
+    public ResponseEntity<Movie> findById(@PathVariable Long id) {
         Movie movie = service.findById(id);
         if (movie == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -49,7 +49,7 @@ public class MovieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable String id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         if (service.findById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -58,7 +58,7 @@ public class MovieController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Movie movie) {
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Movie movie) {
         if (service.findById(id) == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

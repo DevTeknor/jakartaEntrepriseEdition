@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MovieService {
-
-
     private final MovieRepository repository;
 
     @Autowired
@@ -23,7 +21,7 @@ public class MovieService {
         return repository.findAll();
     }
 
-    public Movie findById(String id) {
+    public Movie findById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -34,11 +32,11 @@ public class MovieService {
         repository.save(movie);
     }
 
-    public void delete(String id) {
+    public void delete(Long id) {
         repository.deleteById(id);
     }
 
-    public void update(String id, Movie movie) {
+    public void update(Long id, Movie movie) {
         Movie updatedMovie = findById(id);
         updatedMovie.setTitle(movie.getTitle());
         repository.save(updatedMovie);
