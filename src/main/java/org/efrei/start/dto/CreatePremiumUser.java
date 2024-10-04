@@ -1,29 +1,21 @@
 package org.efrei.start.dto;
 
 public class CreatePremiumUser {
-    private String firstName;
-    private String lastName;
-    private String age;
+    private String firstname;
+    private String lastname;
 
 
-    public String getFirstName() {
-        return this.firstName;
+    public String getFirstname() {
+        return this.firstname;
     }
-    public void setTitle(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return this.lastName;
-    }
-    public void setCategory(String lastName) {
-        this.lastName = lastName;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getAge() {
-        return this.age;
+    public String getLastname() {
+        return this.lastname;
     }
-    public void setAge(String age) {
-        this.age = age;
+    public void setCategory(String lastname) {
+        this.lastname = lastname;
     }
 }

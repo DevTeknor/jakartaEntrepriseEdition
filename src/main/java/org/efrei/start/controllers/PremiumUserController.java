@@ -1,5 +1,7 @@
 package org.efrei.start.controllers;
 
+import java.util.List;
+
 import org.efrei.start.dto.CreatePremiumUser;
 import org.efrei.start.models.PremiumUser;
 import org.efrei.start.services.PremiumUserService;
@@ -15,6 +17,52 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping("/premium-users")
 public class PremiumUserController {
 
+    private final PremiumUserService service;
+
+    @Autowired
+    public PremiumUserController(PremiumUserService service) {
+        this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<PremiumUser>> findAll() {
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PremiumUser> findById(@PathVariable String id) {
+        PremiumUser user = service.findById(id);
+        if (user == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody CreatePremiumUser createUser) {
+        service.create(createUser);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable String id) {
+        if (service.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PremiumUser> update(@PathVariable String id, @RequestBody PremiumUser user) {
+        if (service.findById(id) == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        service.update(id, user);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
 }

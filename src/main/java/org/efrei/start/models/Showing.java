@@ -17,10 +17,10 @@ public class Showing {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "movie_id")  // clé étrangère pour lier à un film
+    @JoinColumn(name = "movie_id")
     private Movie movie;
 
-    private int nbSits; // Nombre de places disponibles
+    private int nbSits;
 
     public Showing() {
     }

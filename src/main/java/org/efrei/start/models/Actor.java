@@ -20,8 +20,6 @@ public class Actor {
     @Column(name = "firstname", nullable = false)
     private String firstname;
 
-
-
     public Actor(String firstname, String name) {
         this.firstname = firstname;
         this.name = name;
@@ -29,7 +27,6 @@ public class Actor {
 
     public Actor() {
     }
-
 
     public String getId() {
         return id;
