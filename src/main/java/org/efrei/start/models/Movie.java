@@ -1,10 +1,15 @@
 package org.efrei.start.models;
 
-import jakarta.persistence.Column;
+import java.util.List;
+import java.util.Locale.Category;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -16,32 +21,34 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = false)
-    private String description;
-
-    @Column(name = "release_year", nullable = false)
-    private String releaseYear;
-
-    @Column(name = "language", nullable = false)
-    private String language;
+    @OneToMany
+    private List<Actor> actors;
 
 
-    
-    public Movie(String title, String description, String releaseYear, String language) {
-        this.title = title;
-        this.description = description;
-        this.releaseYear = releaseYear;
-        this.language = language;
-    }   
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     public Movie() {
     }
-    
+
+
+    public Movie(String title) {
+        this.title = title;
+    }
+
+
+    public Category getCategory() {
+        return this.category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }    
+
     public String getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(String id) {
@@ -49,35 +56,19 @@ public class Movie {
     }
 
     public String getTitle() {
-        return title;
+        return this.title;
     }
 
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public List<Actor> getActors() {
+        return this.actors;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
     }
-
-    public String getReleaseYear() {
-        return releaseYear;
-    }
-
-    public void setReleaseYear(String releaseYear) {
-        this.releaseYear = releaseYear;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
+    
 }
