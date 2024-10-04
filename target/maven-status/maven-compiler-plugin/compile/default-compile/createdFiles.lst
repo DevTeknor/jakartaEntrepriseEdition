@@ -1,6 +1,0 @@
-org\efrei\start\repositories\ActorRepository.class
-org\efrei\start\models\Actor.class
-org\efrei\start\services\ActorService.class
-org\efrei\start\models\Movie.class
-org\efrei\start\controllers\ActorController.class
-org\efrei\start\StartApplication.class
